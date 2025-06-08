@@ -7,7 +7,7 @@ export default function EventBooking() {
 
   return (
     <div className="max-w-sm mx-auto bg-gray-50 min-h-screen">
-      test
+      testd
     </div>
   );
 }
