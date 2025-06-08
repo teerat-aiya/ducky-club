@@ -1,0 +1,33 @@
+name = "amsm-liff-api_dev"
+compatibility_date = "2024-08-24"
+compatibility_flags = ["nodejs_compat"]
+
+
+routes = [
+  { pattern = "liff-amsm-dev.aiya.me/api/*", zone_name = "aiya.me" },
+]
+
+[placement]
+mode = "smart"
+
+[vars]
+DIRECTUS_URL = "https://console.amsm.aiya.me"
+GOOGLE_CLIENT_ID = "263564006399-3nf9frp6nnpri405j5cjv1f21028744u.apps.googleusercontent.com"
+GOOGLE_REDIRECT_URI = "https://amsm-dev.aiya.me/api/auth/google/callback"
+
+
+
+[env.prod]
+name = "amsm-liff-api_prod"
+
+routes = [
+  { pattern = "liff-amsm.aiya.me/api/*", zone_name = "aiya.me" },
+]
+
+[env.prod.placement]
+mode = "smart"
+
+[env.prod.vars]
+DIRECTUS_URL = "https://console.amsm.aiya.me"
+GOOGLE_CLIENT_ID = "263564006399-3nf9frp6nnpri405j5cjv1f21028744u.apps.googleusercontent.com"
+GOOGLE_REDIRECT_URI = "https://amsm.aiya.me/api/auth/google/callback"

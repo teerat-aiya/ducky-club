@@ -1,0 +1,32 @@
+{
+  "name": "@repo/preline",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./preline.css": "./assets/css/main.min.css",
+    "./Avatar": "./src/components/Avatar.tsx",
+    "./chat": "./src/chat/index.ts"
+  },
+  "scripts": {
+    "lint": "eslint . --max-warnings 0",
+    "generate:component": "turbo gen react-component"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "*",
+    "@repo/typescript-config": "*",
+    "@repo/shared": "*",
+    "@turbo/gen": "^1.12.4",
+    "@types/node": "^20.11.24",
+    "@types/eslint": "^8.56.5",
+    "@types/react": "^18.2.61",
+    "@types/react-dom": "^18.2.19",
+    "eslint": "^8.57.0",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "preline": "^2.5.1",
+    "react": "^18.2.0"
+  }
+}

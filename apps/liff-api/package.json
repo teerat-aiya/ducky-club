@@ -1,0 +1,25 @@
+{
+  "name": "liff-api",
+  "scripts": {
+    "dev": "wrangler dev src/index.ts --port 15501  --inspector-port 25501",
+    "deploy": "wrangler deploy --minify src/index.ts",
+    "cf-typegen": "wrangler types src/types/worker-configuration.d.ts --env-interface WorkerEnv"
+  },
+  "dependencies": {
+    "@directus/sdk": "^17.0.0",
+    "@hono/swagger-ui": "^0.4.0",
+    "@hono/zod-openapi": "^0.15.3",
+    "@hono/zod-validator": "^0.2.2",
+    "@line/bot-sdk": "^9.3.0",
+    "@repo/shared": "*",
+    "change-case": "^5.4.4",
+    "date-fns": "^3.6.0",
+    "handlebars": "^4.7.8",
+    "hono": "^4.5.6",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240821.1",
+    "@types/mustache": "^4.2.5"
+  }
+}

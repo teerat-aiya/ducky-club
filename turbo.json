@@ -1,0 +1,13 @@
+{
+  "tasks": {
+    "build": {
+      "outputs": [
+        "apps/*/build/**",
+        "packages/*/build/**"
+      ]
+    },
+    "dev": {
+      "persistent": true
+    }
+  }
+}
