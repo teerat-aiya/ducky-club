@@ -5,7 +5,6 @@
   "type": "module",
   "scripts": {
     "build": "remix vite:build",
-    "deploy": "npm run build && firebase deploy --only hosting",
     "dev": "bun run dev:ssl & remix vite:dev",
     "dev:ssl": "local-ssl-proxy --source 6001 --target 6000",
     "ssl": "local-ssl-proxy --source 6001 --target 6000",
@@ -31,6 +30,7 @@
   },
   "devDependencies": {
     "@remix-run/dev": "^2.16.8",
+    "@repo/preline": "*",
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.7.4",
@@ -50,5 +50,6 @@
   },
   "engines": {
     "node": ">=20.0.0"
-  }
+  },
+  "packageManager": "bun@1.1.13"
 }
