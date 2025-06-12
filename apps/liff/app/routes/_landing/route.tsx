@@ -1,7 +1,6 @@
 import { Outlet } from "@remix-run/react";
 import { useEffect } from "react";
 import { useLineLiff } from "~/contexts/LineLiffContext";
-import { useLogin } from "~/hooks/auth/useLogin";
 import { Loading } from "@repo/preline";
 
 const Route = () => {
@@ -36,7 +35,7 @@ const Route = () => {
 
   return (
     <>
-      <main id="content" className="w-full flex justify-center">
+      <main id="content" className="">
         <Outlet />
       </main>
       {/* <Footer /> */}

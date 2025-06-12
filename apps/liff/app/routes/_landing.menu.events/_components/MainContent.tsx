@@ -250,7 +250,7 @@ export function MainContent({ events, stats }: MainContentProps) {
                           : "Event"}
                       </span>
                     </div>
-                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/30 to-transparent p-4">
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
                       <span
                         className={`inline-flex items-center space-x-3`}
                       >
@@ -263,7 +263,7 @@ export function MainContent({ events, stats }: MainContentProps) {
                           <span className="text-sm font-medium text-white">
                             {profile?.displayName}
                           </span>
-                          <span className="text-xs text-gray-100">
+                          <span className="text-xs text-gray-200">
                             Creator
                           </span>
                         </div>
