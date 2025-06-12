@@ -1,9 +1,7 @@
-import { json } from '@remix-run/node';
-import { useLoaderData } from '@remix-run/react';
 import { Profile } from './components/Profile';
 
-// TODO: Replace with actual data fetching
-export const loader = async () => {
+
+export default function ProfileRoute() {
   const mockUser = {
     displayName: 'Alex Johnson',
     pictureUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=faces',
@@ -33,11 +31,5 @@ export const loader = async () => {
       { id: 6, title: 'Community Star', description: '20+ helpful posts', icon: '⭐', color: 'bg-yellow-50 border-yellow-200' }
     ]
   };
-
-  return json({ user: mockUser });
-};
-
-export default function ProfileRoute() {
-  const data = useLoaderData<typeof loader>();
-  return <Profile {...data} />;
+  return <Profile user={mockUser} />;
 }

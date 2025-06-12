@@ -1,9 +1,6 @@
-import { json } from '@remix-run/node';
-import { useLoaderData } from '@remix-run/react';
 import { Community } from './components/Community';
 
-// TODO: Replace with actual data fetching
-export const loader = async () => {
+export default function CommunityRoute() {
   const mockPosts = [
     {
       id: 1,
@@ -50,11 +47,5 @@ export const loader = async () => {
       { value: 'text', label: 'General', count: mockPosts.filter(p => p.type === 'text').length }
     ]
   };
-
-  return json({ posts: mockPosts, stats });
-};
-
-export default function CommunityRoute() {
-  const data = useLoaderData<typeof loader>();
-  return <Community {...data} />;
+  return <Community posts={mockPosts} stats={stats} />;
 }
