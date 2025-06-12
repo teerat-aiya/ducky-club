@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, Filter, SlidersHorizontal, MapPin, Star, Clock, Users, Zap } from 'lucide-react';
-import { Link } from '@remix-run/react';
+import { Search, SlidersHorizontal, MapPin, Star, Users } from 'lucide-react';
 
 interface Space {
   id: string;

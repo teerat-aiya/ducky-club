@@ -4,7 +4,7 @@ import { useLineLiff } from "~/contexts/LineLiffContext";
 import { Loading } from "@repo/preline";
 
 const Route = () => {
-  const { liff, isLoggedIn, login, profileQuery, isInitialized } =
+  const { isLoggedIn, login, isInitialized } =
     useLineLiff();
   // const authen = useLogin();
   // const { data: profile, isLoading, error } = useLineProfile();

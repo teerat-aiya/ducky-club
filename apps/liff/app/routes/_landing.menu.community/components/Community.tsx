@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageSquare, Plus, Users, Camera, Paperclip, Filter } from 'lucide-react';
-import { Link } from '@remix-run/react';
+import { MessageSquare, Camera, Paperclip, Filter } from 'lucide-react';
 
 interface User {
   name: string;
