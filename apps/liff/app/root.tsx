@@ -11,7 +11,7 @@ import "./tailwind.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { LineLiffProvider } from "./contexts/LineLiffContext";
 import { Provider } from "react-redux";
-import { PersistGate } from 'redux-persist/lib/integration/react'
+import { PersistGate } from "redux-persist/lib/integration/react";
 import { store, persistor } from "./store";
 import PrelineScript from "./PrelineScript";
 
@@ -36,6 +36,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
+        <PrelineScript />
       </head>
       <body>
         {children}
@@ -62,18 +63,18 @@ export default function App() {
 
   return (
     <>
-    <PrelineScript />
-    <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-          <QueryClientProvider client={queryClient}>
-            <LineLiffProvider liffId={liffId}>
-              <Outlet />
-            </LineLiffProvider>
-          </QueryClientProvider>
-        </PersistGate>
-      </Provider>
+      <Layout>
+        <Provider store={store}>
+          <PersistGate loading={null} persistor={persistor}>
+            <QueryClientProvider client={queryClient}>
+              <LineLiffProvider liffId={liffId}>
+                <Outlet />
+              </LineLiffProvider>
+            </QueryClientProvider>
+          </PersistGate>
+        </Provider>
+      </Layout>
     </>
-    
   );
 }
 
