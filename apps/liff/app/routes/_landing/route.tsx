@@ -26,114 +26,6 @@ const Route = () => {
     }
   }, [isInitialized]);
 
-  // useEffect(() => {
-  //   if (isLoggedIn && profileQuery.data) {
-  //     if (me) {
-  //       if (me?.profile_picture) {
-  //         const userProfile: Partial<UserProfile> = {
-  //           display_name: profileQuery.data.displayName,
-  //         };
-  //         updateUserProfile
-  //           .mutateAsync({ variables: userProfile })
-  //           .catch((err) => {
-  //             console.error(err);
-  //           });
-  //       } else {
-  //         getImageFileFromURL(profileQuery.data.pictureUrl || "").then(
-  //           async (file) => {
-  //             if (file) {
-  //               const fileName = randomHexString(32);
-  //               const renamedFile = new File([file], fileName, {
-  //                 type: file.type,
-  //               });
-  //               fileUpload.mutateAsync(
-  //                 { folder: "avatar", file: renamedFile },
-  //                 {
-  //                   onSuccess: (data) => {
-  //                     const userProfile: Partial<UserProfile> = {
-  //                       display_name: profileQuery.data.displayName,
-  //                       profile_picture: data.id,
-  //                     };
-  //                     updateUserProfile.mutateAsync(
-  //                       { variables: userProfile },
-  //                       {
-  //                         onError: () => {
-  //                           if (data.id) {
-  //                             fileDelete.mutateAsync(data.id);
-  //                           }
-  //                         },
-  //                       }
-  //                     );
-  //                   },
-  //                   onError: (error) => {
-  //                     console.error(error);
-  //                   },
-  //                 }
-  //               );
-  //             }
-  //           }
-  //         );
-  //       }
-  //     } else {
-  //       getImageFileFromURL(profileQuery.data.pictureUrl || "").then(
-  //         async (file) => {
-  //           if (file) {
-  //             const fileName = randomHexString(32);
-  //             const renamedFile = new File([file], fileName, {
-  //               type: file.type,
-  //             });
-  //             await fileUpload.mutateAsync(
-  //               { folder: "avatar", file: renamedFile },
-  //               {
-  //                 onSuccess: (data) => {
-  //                   const userProfile: Partial<UserProfile> = {
-  //                     uid: profileQuery.data.userId,
-  //                     display_name: profileQuery.data.displayName,
-  //                     profile_picture: data.id,
-  //                   };
-  //                   insertUserProfile
-  //                     .mutateAsync(
-  //                       { variables: userProfile },
-  //                       {
-  //                         onSuccess: () => {
-  //                           const advancedProfile: Partial<AdvancedProfile> = {
-  //                             uid: profileQuery.data.userId,
-  //                           };
-  //                           insertAdvProfile
-  //                             .mutateAsync(
-  //                               { variables: advancedProfile },
-  //                               {
-  //                                 onSuccess: () => {
-  //                                   authen.mutateAsync({
-  //                                     IDToken: liff?.getIDToken() || "",
-  //                                   });
-  //                                 },
-  //                               }
-  //                             )
-  //                             .catch((err) => {
-  //                               console.error(err);
-  //                             });
-  //                         },
-  //                         onError: () => {
-  //                           if (data.id) {
-  //                             fileDelete.mutateAsync(data.id);
-  //                           }
-  //                         },
-  //                       }
-  //                     )
-  //                     .catch((err) => {
-  //                       console.error(err);
-  //                     });
-  //                 },
-  //               }
-  //             );
-  //           }
-  //         }
-  //       );
-  //     }
-  //   }
-  // }, [me, profileQuery.data, isLoggedIn]);
-
   if (!isLoggedIn) {
     return (
       <div className="h-screen">
@@ -144,7 +36,7 @@ const Route = () => {
 
   return (
     <>
-      <main id="content">
+      <main id="content" className="w-full flex justify-center">
         <Outlet />
       </main>
       {/* <Footer /> */}

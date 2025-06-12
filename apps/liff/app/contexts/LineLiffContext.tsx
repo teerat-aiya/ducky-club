@@ -3,7 +3,7 @@ import liff from '@line/liff';
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
 
 // Types
-interface UserProfile {
+export interface UserProfile {
   userId: string;
   displayName: string;
   pictureUrl?: string;

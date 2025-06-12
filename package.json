@@ -8,6 +8,7 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
+    "@tailwindcss/forms": "^0.5.10",
     "local-ssl-proxy": "^2.0.5",
     "prettier": "^3.2.5",
     "turbo": "^2.2.3",
