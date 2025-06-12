@@ -26,7 +26,7 @@ import { MainContent } from "./_components/MainContent";
 export default function DashboardRoute() {
   const mockData = {
     user: {
-      name: "John Doe",
+      name: "John Doed",
       points: 1250,
       level: "Gold",
     },
