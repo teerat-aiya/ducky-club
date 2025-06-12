@@ -21,7 +21,7 @@ interface Post {
   image?: string;
 }
 
-interface CommunityProps {
+interface MainContentProps {
   posts: Post[];
   stats: {
     totalMembers: number;
@@ -35,7 +35,7 @@ interface CommunityProps {
   };
 }
 
-export function Community({ posts, stats }: CommunityProps) {
+export function MainContent({ posts, stats }: MainContentProps) {
   const [newPost, setNewPost] = useState('');
   const [selectedFilter, setSelectedFilter] = useState('all');
 

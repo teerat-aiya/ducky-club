@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Edit, Calendar, Award, MapPin, Mail, Settings, LogOut, Star, TrendingUp, Users, Clock } from 'lucide-react';
 import { Link } from '@remix-run/react';
+import { UserProfile } from '~/contexts/LineLiffContext';
 
 interface User {
   displayName: string;
@@ -34,11 +35,12 @@ interface User {
   }>;
 }
 
-interface ProfileProps {
+interface MainContentProps {
+  profile: UserProfile;
   user: User;
 }
 
-export function Profile({ user }: ProfileProps) {
+export function MainContent({ profile,user }: MainContentProps) {
   const membershipBadgeColor = 'bg-gradient-to-r from-amber-500 to-orange-500 text-white';
 
   const handleLogout = () => {
@@ -47,7 +49,7 @@ export function Profile({ user }: ProfileProps) {
   };
 
   return (
-    <div className="space-y-6 pb-6">
+    <div className="space-y-6 pb-16">
       {/* Profile Header */}
       <motion.div 
         className="bg-gradient-to-br from-amber-500 via-orange-500 to-red-500 rounded-2xl p-6 text-white relative overflow-hidden"
@@ -58,27 +60,27 @@ export function Profile({ user }: ProfileProps) {
         <div className="absolute top-0 right-0 w-32 h-32 bg-white bg-opacity-10 rounded-full -mr-16 -mt-16" />
         <div className="absolute bottom-0 left-0 w-24 h-24 bg-white bg-opacity-10 rounded-full -ml-12 -mb-12" />
         <div className="relative z-10">
-          <div className="flex items-center space-x-5 mb-5">
+          <div className="flex items-center space-x-5">
             <motion.img 
-              src={user.pictureUrl} 
-              alt={user.displayName}
+              src={profile.pictureUrl} 
+              alt={profile.displayName}
               className="w-20 h-20 rounded-full border-4 border-white border-opacity-30"
               whileHover={{ scale: 1.05 }}
               transition={{ type: 'spring', stiffness: 400, damping: 10 }}
             />
             <div className="flex-1 min-w-0">
               <div className="flex items-center">
-                <h1 className="text-2xl font-bold truncate">{user.displayName}</h1>
-                <span className={`ml-2 text-xs px-2 py-0.5 rounded-full ${membershipBadgeColor}`}>
-                  {user.membershipLevel}
-                </span>
+                <h1 className="text-2xl font-bold truncate">{profile.displayName}</h1>
+                {/* <span className={`ml-2 text-xs px-2 py-0.5 rounded-full ${membershipBadgeColor}`}>
+                  {profile.membershipLevel}
+                </span> */}
               </div>
-              <p className="text-amber-100 text-sm truncate">{user.statusMessage}</p>
+              <p className="text-amber-100 text-sm truncate">{profile.userId}</p>
               <div className="flex items-center mt-1 text-xs text-amber-100">
-                <Star className="w-3.5 h-3.5 mr-1 fill-current" />
-                <span>{user.points} points</span>
-                <span className="mx-2">•</span>
-                <span>Member since {new Date(user.joinDate).getFullYear()}</span>
+                {/* <Star className="w-3.5 h-3.5 mr-1 fill-current" />
+                <span>{user.points} points</span> */}
+                {/* <span className="mx-2">•</span> */}
+                {/* <span>Member since {new Date(profile.joinDate).getFullYear()}</span> */}
               </div>
             </div>
             <Link 
@@ -90,7 +92,7 @@ export function Profile({ user }: ProfileProps) {
           </div>
           
           {/* Level Progress */}
-          <div className="mt-4">
+          {/* <div className="mt-4">
             <div className="flex justify-between text-xs mb-1">
               <span>Level Progress</span>
               <span>{user.levelProgress}% to next level</span>
@@ -104,7 +106,7 @@ export function Profile({ user }: ProfileProps) {
             <div className="text-xs text-center mt-1 opacity-80">
               {user.points} / {user.nextLevelPoints} points to {user.membershipLevel} Elite
             </div>
-          </div>
+          </div> */}
         </div>
       </motion.div>
 

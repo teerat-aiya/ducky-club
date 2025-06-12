@@ -18,7 +18,24 @@ export default {
         ],
       },
       colors: {
-        primary: '#FDC700'
+        // Semantic color names
+        primary: {
+          DEFAULT: '#FDC700',
+          light: '#FFDB4D',
+          dark: '#E6B300',
+          contrast: '#000000',
+        },
+        // Supporting colors
+        background: {
+          light: '#FFFFFF',
+          dark: '#1A1A1A',
+        },
+        text: {
+          primary: '#1A1A1A',
+          secondary: '#4B5563',
+          disabled: '#9CA3AF',
+          onPrimary: '#000000',
+        },
       },
     },
   },

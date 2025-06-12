@@ -1,4 +1,4 @@
-import { Community } from './components/Community';
+import { MainContent } from './components/MainContent';
 
 export default function CommunityRoute() {
   const mockPosts = [
@@ -47,5 +47,7 @@ export default function CommunityRoute() {
       { value: 'text', label: 'General', count: mockPosts.filter(p => p.type === 'text').length }
     ]
   };
-  return <Community posts={mockPosts} stats={stats} />;
+  return <div className="p-4">
+    <MainContent posts={mockPosts} stats={stats} />
+  </div>;
 }

@@ -39,20 +39,13 @@ const item = {
   show: { opacity: 1, y: 0, transition: { duration: 0.3, ease: "easeOut" } },
 };
 
-const categories = [
-  { id: "all", name: "All Events" },
-  { id: "workshop", name: "Workshops" },
-  { id: "meetup", name: "Meetups" },
-  { id: "conference", name: "Conferences" },
-  { id: "social", name: "Social" },
-];
-
 interface MainContentProps {
   events: Event[];
+  categories: string[];
   stats: EventStats;
 }
 
-export function MainContent({ events, stats }: MainContentProps) {
+export function MainContent({ events, categories, stats }: MainContentProps) {
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
@@ -82,6 +75,8 @@ export function MainContent({ events, stats }: MainContentProps) {
       })
       .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
   }, [events, selectedCategory, searchQuery]);
+
+  useEffect(() => { controls.start("show"); }, [controls, filteredEvents]);
 
   const registrationRate =
     stats.totalCapacity > 0
@@ -149,39 +144,39 @@ export function MainContent({ events, stats }: MainContentProps) {
       </div> */}
         {/* Stats Banner */}
         <motion.div
-          className="bg-gradient-to-r from-blue-500 to-indigo-600 dark:from-primary dark:to-indigo-700 rounded-2xl p-5 text-white relative overflow-hidden shadow-lg mb-6"
+          className="bg-gradient-to-br from-primary to-primary-dark dark:from-primary-dark dark:to-primary rounded-2xl p-6 text-white relative overflow-hidden shadow-lg mb-6"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1, duration: 0.4 }}
         >
-          <div className="absolute top-0 right-0 w-32 h-32 bg-white bg-opacity-10 rounded-full -mr-10 -mt-10" />
-          <div className="absolute bottom-0 left-0 w-24 h-24 bg-white bg-opacity-10 rounded-full -ml-10 mb-2" />
+          <div className="absolute top-0 right-0 w-32 h-32 bg-white/20 dark:bg-black/20 rounded-full -mr-10 -mt-10" />
+          <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/20 dark:bg-black/20 rounded-full -ml-10 -mb-6" />
           <div className="relative z-10">
-            <div className="grid grid-cols-3 gap-4 text-center">
+            <div className="grid grid-cols-3 gap-4">
               <motion.div
                 variants={item}
-                className="bg-white bg-opacity-10 backdrop-blur-sm p-3 rounded-xl"
+                className="bg-white/20 dark:bg-black/20 backdrop-blur-sm p-4 rounded-xl hover:bg-white/30 dark:hover:bg-black/30 transition-colors duration-200"
               >
-                <div className="text-2xl font-bold">{stats.totalEvents}</div>
-                <div className="text-sm opacity-90">Total Events</div>
+                <div className="text-2xl font-bold text-white">{stats.totalEvents}</div>
+                <div className="text-sm text-white/90 mt-1">Total Events</div>
               </motion.div>
               <motion.div
                 variants={item}
-                className="bg-white bg-opacity-10 backdrop-blur-sm p-3 rounded-xl"
+                className="bg-white/20 dark:bg-black/20 backdrop-blur-sm p-4 rounded-xl hover:bg-white/30 dark:hover:bg-black/30 transition-colors duration-200"
                 transition={{ delay: 0.1 }}
               >
-                <div className="text-2xl font-bold">
+                <div className="text-2xl font-bold text-white">
                   {stats.totalRegistrations}
                 </div>
-                <div className="text-sm opacity-90">Participants</div>
+                <div className="text-sm text-white/90 mt-1">Participants</div>
               </motion.div>
               <motion.div
                 variants={item}
-                className="bg-white bg-opacity-10 backdrop-blur-sm p-3 rounded-xl"
+                className="bg-white/20 dark:bg-black/20 backdrop-blur-sm p-4 rounded-xl hover:bg-white/30 dark:hover:bg-black/30 transition-colors duration-200"
                 transition={{ delay: 0.2 }}
               >
-                <div className="text-2xl font-bold">{registrationRate}%</div>
-                <div className="text-sm opacity-90">Registration Rate</div>
+                <div className="text-2xl font-bold text-white">{registrationRate}%</div>
+                <div className="text-sm text-white/90 mt-1">Registration Rate</div>
               </motion.div>
             </div>
           </div>
@@ -193,12 +188,12 @@ export function MainContent({ events, stats }: MainContentProps) {
           className=" flex overflow-x-auto  pb-2"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
-          <div className="mx-2 flex space-x-2">
+          <div className="mx-4 flex space-x-2">
             {categories.map((category) => (
               <button
                 key={category.id}
                 onClick={() => handleCategorySelect(category.id)}
-                className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
+                className={`px-4 py-2 rounded-xl text-sm font-medium whitespace-nowrap transition-colors ${
                   selectedCategory === category.id
                     ? "bg-primary text-white shadow-md"
                     : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"

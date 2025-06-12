@@ -16,23 +16,25 @@ const Header: React.FC<HeaderProps> = ({ profile }) => {
     setSelectedLink(location.pathname);
   }, [location.pathname]);
 
-  if (selectedLink === "/menu/profile") {
-    return;
-  }
+  // if (selectedLink === "/menu/profile") {
+  //   return;
+  // }
 
   return (
     <>
-      <header className={`sticky top-0 z-40 shadow-sm border-b ${
-        isDarkMode 
-          ? 'bg-gray-800 border-gray-700' 
-          : 'bg-white border-gray-200'
-      }`}>
+      <header
+        className={`sticky top-0 z-40 shadow-sm border-b ${
+          isDarkMode
+            ? "bg-gray-800 border-gray-700"
+            : "bg-white border-gray-200"
+        }`}
+      >
         <div className="p-3 flex justify-between items-center">
           <div>
             {selectedLink === "/menu" && (
               <>
                 <h1 className="text-xl sm:text-xl text-gray-800 font-bold">
-                  <span className={isDarkMode ? 'text-white' : 'text-gray-800'}>
+                  <span className={isDarkMode ? "text-white" : "text-gray-800"}>
                     Ducky Duck
                   </span>
                 </h1>
@@ -41,7 +43,7 @@ const Header: React.FC<HeaderProps> = ({ profile }) => {
             {selectedLink === "/menu/events" && (
               <>
                 <h1 className="text-xl sm:text-2xl text-gray-800 font-bold">
-                  <span className={isDarkMode ? 'text-white' : 'text-gray-800'}>
+                  <span className={isDarkMode ? "text-white" : "text-gray-800"}>
                     Events
                   </span>
                 </h1>
@@ -50,14 +52,23 @@ const Header: React.FC<HeaderProps> = ({ profile }) => {
             {selectedLink === "/menu/community" && (
               <>
                 <h1 className="text-xl sm:text-2xl text-gray-800 font-bold">
-                  <span className={isDarkMode ? 'text-white' : 'text-gray-800'}>
+                  <span className={isDarkMode ? "text-white" : "text-gray-800"}>
                     Community
                   </span>
                 </h1>
               </>
             )}
+            {selectedLink === "/menu/profile" && (
+              <>
+              <h1 className="text-xl sm:text-2xl text-gray-800 font-bold">
+                <span className={isDarkMode ? "text-white" : "text-gray-800"}>
+                  Profile
+                </span>
+              </h1>
+              </>
+            )}
             <h3 className="text-sm sm:text-base text-gray-800">
-              <span className={isDarkMode ? 'text-gray-300' : 'text-gray-600'}>
+              <span className={isDarkMode ? "text-gray-300" : "text-gray-600"}>
                 Welcome back, {profile?.displayName}
               </span>
             </h3>
@@ -66,8 +77,8 @@ const Header: React.FC<HeaderProps> = ({ profile }) => {
             <div className="relative">
               {profile?.pictureUrl ? (
                 <img
-className={`shrink-0 size-11 sm:size-14 ring-4 rounded-full ${
-                    isDarkMode ? 'ring-gray-800' : 'ring-white'
+                  className={`shrink-0 size-11 sm:size-14 ring-4 rounded-full ${
+                    isDarkMode ? "ring-gray-800" : "ring-white"
                   }`}
                   src={profile.pictureUrl}
                   alt="Avatar"

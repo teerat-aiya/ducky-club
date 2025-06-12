@@ -27,6 +27,27 @@ export default function EventsRoute() {
       image: "https://img.freepik.com/free-psd/horizontal-banner-template-professional-business-event_23-2149313270.jpg",
       description: "Learn the essentials of launching your startup.",
     },
+    {
+      id: 3,
+      title: "Startup Workshop",
+      date: "2023-06-17T14:00:00",
+      time: "14:00 - 16:00",
+      location: "Workshop Room 2",
+      category: "workshop",
+      capacity: 25,
+      registered: 18,
+      image: "https://img.freepik.com/free-psd/horizontal-banner-template-professional-business-event_23-2149313270.jpg",
+      description: "Learn the essentials of launching your startup.",
+    },
+  ];
+
+  const categories = [
+    { id: "all", name: "All Events" },
+    { id: "workshop", name: "Workshops" },
+    { id: "meetup", name: "Meetups" },
+    { id: "conference", name: "Conferences" },
+    { id: "social", name: "Social" },
+    { id: "networking", name: "Networking" },
   ];
 
   const stats = {
@@ -57,7 +78,7 @@ export default function EventsRoute() {
   };
   return (
     <div className="py-4">
-      <MainContent events={mockEvents} stats={stats} />
+      <MainContent events={mockEvents} categories={categories} stats={stats} />
     </div>
   );
 }
