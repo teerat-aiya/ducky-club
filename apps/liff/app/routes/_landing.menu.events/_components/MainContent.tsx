@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence, useAnimation } from "framer-motion";
 import { Calendar, Clock, MapPin } from "lucide-react";
-import { useSearchParams } from "@remix-run/react";
+import { Link, useSearchParams } from "@remix-run/react";
 import { useLineProfile } from "~/contexts/LineLiffContext";
 import { Loading } from "@repo/preline";
 

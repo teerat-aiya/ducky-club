@@ -78,5 +78,5 @@ export default function App() {
 }
 
 export function HydrateFallback() {
-  return <p></p>;
+  return <div></div>
 }

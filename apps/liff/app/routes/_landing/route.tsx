@@ -35,7 +35,7 @@ const Route = () => {
 
   return (
     <>
-      <main id="content" className="">
+      <main id="content">
         <Outlet />
       </main>
       {/* <Footer /> */}
