@@ -148,7 +148,7 @@ export function MainContent({
         <motion.div variants={item}>
           <button
             onClick={() => navigate("/menu/community")}
-            className="block h-full"
+            className="w-full h-full"
           >
             <div className="bg-white dark:bg-gray-800/80 backdrop-blur-sm p-4 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 dark:border-gray-700/50 h-full hover:-translate-y-1">
               <div className="flex items-start justify-between">

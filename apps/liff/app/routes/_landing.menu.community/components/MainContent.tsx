@@ -52,7 +52,7 @@ export function MainContent({ posts, stats }: MainContentProps) {
   );
 
   return (
-    <div className="space-y-6 pb-6">
+    <div className="space-y-6 pb-24">
       {/* Header */}
       <motion.div 
         className="text-center"

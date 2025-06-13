@@ -63,7 +63,7 @@ export function MainContent({ events, categories, stats }: MainContentProps) {
   // Filter + sort
   const filteredEvents = useMemo(() => {
     return events
-      .filter(event => {
+      .filter((event) => {
         const matchesCategory =
           selectedCategory === "all" || event.category === selectedCategory;
         const matchesSearch =
@@ -76,11 +76,15 @@ export function MainContent({ events, categories, stats }: MainContentProps) {
       .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
   }, [events, selectedCategory, searchQuery]);
 
-  useEffect(() => { controls.start("show"); }, [controls, filteredEvents]);
+  useEffect(() => {
+    controls.start("show");
+  }, [controls, filteredEvents]);
 
   const registrationRate =
     stats.totalCapacity > 0
-      ? Math.round((stats.totalRegistrations / Math.max(stats.totalCapacity, 1)) * 100)
+      ? Math.round(
+          (stats.totalRegistrations / Math.max(stats.totalCapacity, 1)) * 100
+        )
       : 0;
 
   // Handle category select -> update state + URL
@@ -104,7 +108,12 @@ export function MainContent({ events, categories, stats }: MainContentProps) {
     return () => clearTimeout(id);
   }, [searchQuery, searchParams, setSearchParams]);
 
-  if (isProfileLoading) return <div className="h-screen"><Loading /></div>;
+  if (isProfileLoading)
+    return (
+      <div className="h-screen">
+        <Loading />
+      </div>
+    );
 
   return (
     <div className="space-y-6 pb-24">
@@ -157,7 +166,9 @@ export function MainContent({ events, categories, stats }: MainContentProps) {
                 variants={item}
                 className="bg-white/20 dark:bg-black/20 backdrop-blur-sm p-4 rounded-xl hover:bg-white/30 dark:hover:bg-black/30 transition-colors duration-200"
               >
-                <div className="text-2xl font-bold text-white">{stats.totalEvents}</div>
+                <div className="text-2xl font-bold text-white">
+                  {stats.totalEvents}
+                </div>
                 <div className="text-sm text-white/90 mt-1">Total Events</div>
               </motion.div>
               <motion.div
@@ -175,8 +186,12 @@ export function MainContent({ events, categories, stats }: MainContentProps) {
                 className="bg-white/20 dark:bg-black/20 backdrop-blur-sm p-4 rounded-xl hover:bg-white/30 dark:hover:bg-black/30 transition-colors duration-200"
                 transition={{ delay: 0.2 }}
               >
-                <div className="text-2xl font-bold text-white">{registrationRate}%</div>
-                <div className="text-sm text-white/90 mt-1">Registration Rate</div>
+                <div className="text-2xl font-bold text-white">
+                  {registrationRate}%
+                </div>
+                <div className="text-sm text-white/90 mt-1">
+                  Registration Rate
+                </div>
               </motion.div>
             </div>
           </div>
@@ -246,9 +261,7 @@ export function MainContent({ events, categories, stats }: MainContentProps) {
                       </span>
                     </div>
                     <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
-                      <span
-                        className={`inline-flex items-center space-x-3`}
-                      >
+                      <span className={`inline-flex items-center space-x-3`}>
                         <img
                           className="shrink-0 size-9 sm:size-12 ring-2 ring-white rounded-full"
                           src={profile?.pictureUrl}
@@ -258,9 +271,7 @@ export function MainContent({ events, categories, stats }: MainContentProps) {
                           <span className="text-sm font-medium text-white">
                             {profile?.displayName}
                           </span>
-                          <span className="text-xs text-gray-200">
-                            Creator
-                          </span>
+                          <span className="text-xs text-gray-200">Creator</span>
                         </div>
                       </span>
                     </div>

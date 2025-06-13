@@ -49,7 +49,7 @@ export function MainContent({ profile,user }: MainContentProps) {
   };
 
   return (
-    <div className="space-y-6 pb-16">
+    <div className="space-y-6 pb-24">
       {/* Profile Header */}
       <motion.div 
         className="bg-gradient-to-br from-amber-500 via-orange-500 to-red-500 rounded-2xl p-6 text-white relative overflow-hidden"
