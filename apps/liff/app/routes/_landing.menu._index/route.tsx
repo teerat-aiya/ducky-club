@@ -1,58 +1,39 @@
-import { json } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
+import { useLineProfile } from "~/contexts/LineLiffContext";
 import { MainContent } from "./_components/MainContent";
+import { Loading } from "@repo/preline";
 
-// export const loader = async () => {
-//   // TODO: Replace with actual data fetching
-//   const mockData = {
-//     user: {
-//       name: 'John Doe',
-//       points: 1250,
-//       level: 'Gold',
-//     },
-//     stats: {
-//       upcomingEvents: 3,
-//       communityMembers: 42,
-//       spacesAvailable: 5,
-//     },
-//     upcomingBookings: [
-//       { id: 1, title: 'Team Meeting', date: '2023-06-15T14:00:00', space: 'Meeting Room A' },
-//       { id: 2, title: 'Workshop', date: '2023-06-16T10:00:00', space: 'Workshop Room 1' },
-//     ],
-//   };
-//   return json(mockData);
-// };
+interface RouteProps {}
 
-export default function DashboardRoute() {
+const Route: React.FC<RouteProps> = () => {
+  const { data: profile, isLoading: isProfileLoading } = useLineProfile();
   const mockData = {
-    user: {
-      name: "John Doed",
-      points: 1250,
-      level: "Gold",
-    },
     stats: {
       upcomingEvents: 3,
       communityMembers: 42,
       spacesAvailable: 5,
     },
-    upcomingBookings: [
-      {
-        id: 1,
-        title: "Team Meeting",
-        date: "2023-06-15T14:00:00",
-        space: "Meeting Room A",
-      },
-      {
-        id: 2,
-        title: "Workshop",
-        date: "2023-06-16T10:00:00",
-        space: "Workshop Room 1",
-      },
+    upcomingEvents: [
+      // {
+      //   id: 1,
+      //   title: "AI Business Ignite Bangkok",
+      //   date: "2025-06-17T00:00:00",
+      //   space: "Ducky Duck Innovative Space",
+      // },
     ],
   };
+
+  if (isProfileLoading) {
+    return (
+      <div className="h-screen">
+        <Loading />
+      </div>
+    );
+  }
   return (
     <div className="p-4">
-      <MainContent {...mockData} />
+      <MainContent {...mockData} profile={profile} />
     </div>
   );
-}
+};
+
+export default Route;

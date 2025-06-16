@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence, useAnimation } from "framer-motion";
-import { Calendar, Clock, MapPin } from "lucide-react";
-import { Link, useSearchParams } from "@remix-run/react";
+import { Calendar, Clock, MapPin, Users } from "lucide-react";
+import { useNavigate, useSearchParams } from "@remix-run/react";
 import { useLineProfile } from "~/contexts/LineLiffContext";
 import { Loading } from "@repo/preline";
 
@@ -17,6 +17,9 @@ type Event = {
   capacity: number;
   registered: number;
   status: "upcoming" | "ongoing" | "completed";
+  owner: string;
+  ownerPic: string;
+  to: string;
 };
 
 type EventStats = {
@@ -46,6 +49,7 @@ interface MainContentProps {
 }
 
 export function MainContent({ events, categories, stats }: MainContentProps) {
+  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
@@ -107,6 +111,11 @@ export function MainContent({ events, categories, stats }: MainContentProps) {
     }, 300);
     return () => clearTimeout(id);
   }, [searchQuery, searchParams, setSearchParams]);
+
+  const handleRedirect = (url: string) => {
+    // runs any logic, then:
+    window.location.href = url;
+  };
 
   if (isProfileLoading)
     return (
@@ -214,7 +223,7 @@ export function MainContent({ events, categories, stats }: MainContentProps) {
                     : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
                 }`}
               >
-                {category.name}
+                {category.name} ({events.filter((e) => e.category === category.id || category.id === "all").length})
               </button>
             ))}
           </div>
@@ -263,13 +272,13 @@ export function MainContent({ events, categories, stats }: MainContentProps) {
                     <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
                       <span className={`inline-flex items-center space-x-3`}>
                         <img
-                          className="shrink-0 size-9 sm:size-12 ring-2 ring-white rounded-full"
-                          src={profile?.pictureUrl}
+                          className="shrink-0 size-9 sm:size-12 bg-white ring-2 ring-white rounded-full"
+                          src={event.ownerPic}
                           alt="Avatar"
                         />
                         <div className="flex flex-col">
                           <span className="text-sm font-medium text-white">
-                            {profile?.displayName}
+                            {event.owner}
                           </span>
                           <span className="text-xs text-gray-200">Creator</span>
                         </div>
@@ -282,7 +291,7 @@ export function MainContent({ events, categories, stats }: MainContentProps) {
                         {event.title}
                       </h3>
                     </div>
-                    <p className="text-gray-600 dark:text-gray-300 text-sm mb-4 line-clamp-2">
+                    <p className="text-gray-600 dark:text-gray-300 text-sm mb-4 line-clamp-3">
                       {event.description}
                     </p>
 
@@ -305,7 +314,17 @@ export function MainContent({ events, categories, stats }: MainContentProps) {
                         <MapPin className="h-4 w-4 mr-2 flex-shrink-0" />
                         <span className="truncate">{event.location}</span>
                       </div>
+                      <div className="flex items-center">
+                        <Users className="h-4 w-4 mr-2 flex-shrink-0" />
+                        <span>{event.registered}/{event.capacity} registered</span>
+                      </div>
                       <div className="pt-2">
+                        <div className="flex justify-between text-xs mb-1">
+                          <span>{event.registered < event.capacity ? "Registration Progress" : "Full"}</span>
+                          <span>
+                            {event.capacity - event.registered} spots left
+                          </span>
+                        </div>
                         <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
                           <div
                             className="bg-primary h-2 rounded-full"
@@ -314,22 +333,16 @@ export function MainContent({ events, categories, stats }: MainContentProps) {
                             }}
                           />
                         </div>
-                        <div className="flex justify-between text-xs mt-1">
-                          <span>{event.registered} registered</span>
-                          <span>
-                            {event.capacity - event.registered} spots left
-                          </span>
-                        </div>
                       </div>
                     </div>
 
                     <div className="mt-4">
-                      <Link
-                        to={`/events/${event.id}`}
-                        className="w-full inline-flex justify-center items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
+                      <button
+                        onClick={() => handleRedirect(event.to)}
+                        className="w-full inline-flex justify-center items-center px-4 py-3 border border-transparent rounded-xl shadow-md text-sm font-medium text-white bg-primary focus:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-colors"
                       >
-                        View Details
-                      </Link>
+                        Register Now
+                      </button>
                     </div>
                   </div>
                 </motion.div>

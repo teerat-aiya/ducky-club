@@ -52,7 +52,7 @@ export function MainContent({ profile,user }: MainContentProps) {
     <div className="space-y-6 pb-24">
       {/* Profile Header */}
       <motion.div 
-        className="bg-gradient-to-br from-amber-500 via-orange-500 to-red-500 rounded-2xl p-6 text-white relative overflow-hidden"
+        className="bg-gradient-to-br from-primary via-amber-500 to-orange-500 rounded-2xl p-6 text-white relative overflow-hidden"
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.4 }}
@@ -76,19 +76,29 @@ export function MainContent({ profile,user }: MainContentProps) {
                 </span> */}
               </div>
               <p className="text-amber-100 text-sm truncate">{profile.userId}</p>
-              <div className="flex items-center mt-1 text-xs text-amber-100">
-                {/* <Star className="w-3.5 h-3.5 mr-1 fill-current" />
-                <span>{user.points} points</span> */}
-                {/* <span className="mx-2">•</span> */}
-                {/* <span>Member since {new Date(profile.joinDate).getFullYear()}</span> */}
+            <div className="flex items-center mt-1 text-xs text-amber-100">
+              <div className="w-5 h-5 mr-1 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5z" />
+                </svg>
               </div>
+              <span>Rookie Tier</span>
             </div>
-            <Link 
+
+
+              {/* <div className="flex items-center mt-1 text-xs text-amber-100">
+                <Star className="w-3.5 h-3.5 mr-1 fill-current" />
+                <span>{user.points} points</span>
+                <span className="mx-2">•</span>
+                <span>Member since {new Date(profile.joinDate).getFullYear()}</span>
+              </div> */}
+            </div>
+            {/* <Link 
               to="/profile/edit"
               className="p-2 bg-white bg-opacity-20 rounded-full hover:bg-opacity-30 transition-colors"
             >
               <Edit className="w-5 h-5" />
-            </Link>
+            </Link> */}
           </div>
           
           {/* Level Progress */}
@@ -111,7 +121,7 @@ export function MainContent({ profile,user }: MainContentProps) {
       </motion.div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-2 gap-4">
+      {/* <div className="grid grid-cols-2 gap-4">
         <div className="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-sm">
           <div className="flex items-center">
             <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg mr-3">
@@ -156,10 +166,10 @@ export function MainContent({ profile,user }: MainContentProps) {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Upcoming Bookings */}
-      {user.upcomingBookings.length > 0 && (
+      {/* {user.upcomingBookings.length > 0 && (
         <div className="bg-white dark:bg-gray-800 rounded-2xl p-4 shadow-sm">
           <div className="flex items-center justify-between mb-4">
             <h2 className="font-semibold text-lg">Upcoming Bookings</h2>
@@ -194,7 +204,7 @@ export function MainContent({ profile,user }: MainContentProps) {
             ))}
           </div>
         </div>
-      )}
+      )} */}
 
       {/* Achievements */}
       <div className="bg-white dark:bg-gray-800 rounded-2xl p-4 shadow-sm">
@@ -223,7 +233,7 @@ export function MainContent({ profile,user }: MainContentProps) {
       </div>
 
       {/* Account Actions */}
-      <div className="space-y-2">
+      {/* <div className="space-y-2">
         <Link
           to="/profile/settings"
           className="flex items-center justify-between p-4 bg-white dark:bg-gray-800 rounded-2xl shadow-sm hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
@@ -252,7 +262,7 @@ export function MainContent({ profile,user }: MainContentProps) {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
         </button>
-      </div>
+      </div> */}
     </div>
   );
 }
