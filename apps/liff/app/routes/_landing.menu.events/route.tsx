@@ -29,7 +29,7 @@ export default function EventsRoute() {
       status: "upcoming",
       capacity: 40,
       registered: 0,
-      image: "/asset/images/AIBOTS_Creator_10.jpg",
+      image: "/asset/images/AIBOTS_Creator_10_16_9.jpg",
       description:
         '🚀 ปลดล็อกศักยภาพธุรกิจด้วย AI! สร้าง Chatbot ขั้นเทพ...ไม่ใช้โค้ด! ✨',
       to: "https://lu.ma/gdsha5mr",
