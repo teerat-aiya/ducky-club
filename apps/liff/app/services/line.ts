@@ -1,11 +1,10 @@
-import api from "./api";
+import axios, { AxiosInstance } from "axios";
+import { setupLineInterceptors } from "./lineInterceptors";
 
-export const setLineWebhook = (data: {
-  bot_id: string;
-  channel_id: string;
-  endpoint;
-}) =>
-  api.post("/channels/line/webhook-endpoint", {
-    channel_id: data.channel_id,
-    endpoint: data.endpoint,
-  });
+const line: AxiosInstance = axios.create({
+  baseURL: "https://api.line.me/v2/bot",
+});
+
+setupLineInterceptors(line);
+
+export default line

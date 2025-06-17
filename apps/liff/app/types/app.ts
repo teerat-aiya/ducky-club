@@ -4,3 +4,10 @@ export type Profile = {
   pictureUrl?: string;
   statusMessage?: string;
 }
+
+export type Channel = {
+  status: string;
+  followers: number;
+  targetedReaches: number;
+  blocks: number;
+}

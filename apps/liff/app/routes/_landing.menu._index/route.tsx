@@ -8,17 +8,18 @@ const Route: React.FC<RouteProps> = () => {
   const { data: profile, isLoading: isProfileLoading } = useLineProfile();
   const mockData = {
     stats: {
-      upcomingEvents: 3,
-      communityMembers: 42,
+      upcomingEvents: 1,
+      communityMembers: 565,
       spacesAvailable: 5,
     },
     upcomingEvents: [
-      // {
-      //   id: 1,
-      //   title: "AI Business Ignite Bangkok",
-      //   date: "2025-06-17T00:00:00",
-      //   space: "Ducky Duck Innovative Space",
-      // },
+      {
+        id: 1,
+        title: "AiBots Creator #10th",
+        date: "2025-06-24T13:30:00",
+        space: "Ducky Duck Innovative Space",
+        to: "https://lu.ma/gdsha5mr",
+      },
     ],
   };
 

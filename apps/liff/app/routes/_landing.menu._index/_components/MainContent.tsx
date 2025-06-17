@@ -26,6 +26,7 @@ interface MainContentProps {
     title: string;
     date: string;
     space: string;
+    to: string;
   }>;
 }
 
@@ -43,6 +44,11 @@ const container = {
 const item = {
   hidden: { opacity: 0, y: 20 },
   show: { opacity: 1, y: 0, transition: { duration: 0.4 } },
+};
+
+const handleRedirect = (url: string) => {
+  // runs any logic, then:
+  window.location.href = url;
 };
 
 export function MainContent({
@@ -72,7 +78,7 @@ upcomingEvents,
     <div className="space-y-6 pb-24">
       {/* Welcome Banner */}
       <motion.div
-        className="bg-gradient-to-br from-indigo-600 to-purple-600 rounded-3xl p-6 text-white relative overflow-hidden shadow-lg"
+        className="bg-gradient-to-br from-orange-500 via-amber-500 to-primary-dark rounded-3xl p-6 text-white relative overflow-hidden shadow-lg"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, type: "spring" }}
@@ -97,10 +103,10 @@ upcomingEvents,
             Welcome back to your workspace! What&apos;s on your mind today?
           </p>
           <div className="flex items-center space-x-3">
-            <div className="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-xl text-sm font-medium flex items-center space-x-2">
+            {/* <div className="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-xl text-sm font-medium flex items-center space-x-2">
               <StarIcon className="w-4 h-4 text-yellow-300" />
               <span>10 pts</span>
-            </div>
+            </div> */}
             <div className="bg-white/10 backdrop-blur-sm px-4 py-2 rounded-xl text-sm font-medium">
               Rookie Tier
             </div>
@@ -224,6 +230,7 @@ upcomingEvents,
               color:
                 "bg-amber-100 text-amber-600 dark:bg-amber-900/30 dark:text-amber-400",
               to: "/menu/events",
+              disabled: false,
             },
             {
               icon: <Users className="w-5 h-5" />,
@@ -231,6 +238,7 @@ upcomingEvents,
               color:
                 "bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400",
               to: "/menu/community",
+              disabled: true,
             },
             {
               icon: <Coffee className="w-5 h-5" />,
@@ -238,6 +246,7 @@ upcomingEvents,
               color:
                 "bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-400",
               to: "/booking",
+              disabled: true,
             },
             {
               icon: <MessageSquare className="w-5 h-5" />,
@@ -245,6 +254,7 @@ upcomingEvents,
               color:
                 "bg-purple-100 text-purple-600 dark:bg-purple-900/30 dark:text-purple-400",
               to: "/menu/chat",
+              disabled: true,
             },
           ].map((action, index) => (
             <motion.div
@@ -255,7 +265,8 @@ upcomingEvents,
             >
               <button
                 onClick={() => navigate(action.to)}
-                className="flex flex-col items-center justify-center p-2 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group w-full"
+                disabled={action.disabled}
+                className="flex flex-col items-center justify-center p-2 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors group w-full"
               >
                 <div
                   className={`w-10 h-10 ${action.color} rounded-2xl flex items-center justify-center mb-2 group-hover:scale-110 transition-transform`}
@@ -298,7 +309,7 @@ upcomingEvents,
                   whileHover={{ y: -2 }}
                 >
                   <button
-                    onClick={() => navigate(`/menu/events/${event.id}`)}
+                    onClick={()=>handleRedirect(event.to)}
                     className="w-full p-4 bg-white dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-700/50 transition-all duration-300 group"
                   >
                     <div className="flex items-start">
