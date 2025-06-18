@@ -1,10 +1,10 @@
 import { AxiosInstance, InternalAxiosRequestConfig, AxiosResponse } from "axios";
 
-export const setupLineInterceptors = (api: AxiosInstance) => {
+export const setupInterceptors = (api: AxiosInstance) => {
   api.interceptors.request.use(
     (config: InternalAxiosRequestConfig) => {
         config.headers = config.headers || {};
-        config.headers["Authorization"] = `Bearer EDOPQGcIR9uGZsFfPrGK/dtUtAHXclDJGem5D0ELUhnGwZAirQBpL1iJ7gAn5oKA79Xdi6GwjLkcQDrHQQtuIKf6AZf3z76VqRSdKosYMK2tdlfBhKO9Q8eFdF+vcahCAYRrH8dhDIKwo/lpg+cePQdB04t89/1O/w1cDnyilFU=`;
+        config.headers["Authorization"] = `Bearer ${import.meta.env.VITE_LINE_CHANNEL_ACCESS_TOKEN}`;
       return config;
     },
     (error) => Promise.reject(error)
